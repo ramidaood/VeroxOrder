@@ -26,7 +26,9 @@ export type ProductCategory =
   | 'business-cards'
   | 'letterheads'
   | 'envelopes'
-  | 'promotional';
+  | 'promotional'
+  | 'shirts'
+  | 'tax-receipts';
 
 export interface CustomizationOption {
   id: string;

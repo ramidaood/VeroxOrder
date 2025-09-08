@@ -28,7 +28,7 @@ const Login: React.FC = () => {
   return (
     <div className="max-w-md mx-auto mt-8">
       <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">התחברות לחשבון</h2>
         
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email Address
+              כתובת אימייל
             </label>
             <input
               type="email"
@@ -48,13 +48,13 @@ const Login: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your email"
+              placeholder="הזן את האימייל שלך"
             />
           </div>
           
           <div className="mb-6">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
+              סיסמה
             </label>
             <input
               type="password"
@@ -63,7 +63,7 @@ const Login: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your password"
+              placeholder="הזן את הסיסמה שלך"
             />
           </div>
           
@@ -72,15 +72,15 @@ const Login: React.FC = () => {
             disabled={loading}
             className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'מתחבר...' : 'התחבר'}
           </button>
         </form>
         
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            אין לך חשבון?{' '}
             <Link to="/register" className="text-blue-600 hover:text-blue-500">
-              Register here
+              הירשם כאן
             </Link>
           </p>
         </div>

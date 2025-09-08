@@ -6,31 +6,31 @@ import type { Product, ProductCategory } from '../types/index';
 const mockProducts: Product[] = [
   {
     id: '1',
-    name: 'Custom Pens',
+    name: 'עטים מותאמים אישית',
     category: 'pens',
     basePrice: 2.50,
-    description: 'High-quality ballpoint pens with your business logo',
+    description: 'עטים כדוריים איכותיים עם הלוגו של העסק שלך',
     image: '/images/pens.jpg',
     minQuantity: 50,
     maxQuantity: 10000,
     customizationOptions: [
-      { id: 'color', name: 'Pen Color', type: 'color', options: ['Black', 'Blue', 'Red', 'Silver'], required: true },
-      { id: 'logo', name: 'Logo Placement', type: 'logo', options: ['Side', 'Clip'], required: true },
+      { id: 'color', name: 'צבע העט', type: 'color', options: ['שחור', 'כחול', 'אדום', 'כסף'], required: true },
+      { id: 'logo', name: 'מיקום הלוגו', type: 'logo', options: ['בצד', 'על הקליפס'], required: true },
     ]
   },
   {
     id: '2',
-    name: 'Business Cards',
+    name: 'כרטיסי ביקור',
     category: 'business-cards',
     basePrice: 0.15,
-    description: 'Professional business cards with premium finish',
+    description: 'כרטיסי ביקור מקצועיים עם גימור פרימיום',
     image: '/images/business-cards.jpg',
     minQuantity: 100,
     maxQuantity: 5000,
     customizationOptions: [
-      { id: 'material', name: 'Material', type: 'material', options: ['Standard', 'Premium Matte', 'Glossy'], required: true },
-      { id: 'logo', name: 'Logo', type: 'logo', options: ['Upload'], required: true },
-      { id: 'text', name: 'Custom Text', type: 'text', options: [], required: true },
+      { id: 'material', name: 'חומר', type: 'material', options: ['רגיל', 'מט פרימיום', 'מבריק'], required: true },
+      { id: 'logo', name: 'לוגו', type: 'logo', options: ['העלאה'], required: true },
+      { id: 'text', name: 'טקסט מותאם', type: 'text', options: [], required: true },
     ]
   },
   {
@@ -80,28 +80,62 @@ const mockProducts: Product[] = [
   },
   {
     id: '6',
-    name: 'Promotional Items',
+    name: 'פריטים פרסומיים',
     category: 'promotional',
     basePrice: 5.75,
-    description: 'Various promotional items with custom branding',
+    description: 'פריטים פרסומיים שונים עם מיתוג מותאם',
     image: '/images/promotional.jpg',
     minQuantity: 25,
     maxQuantity: 1000,
     customizationOptions: [
-      { id: 'item', name: 'Item Type', type: 'material', options: ['Keychains', 'Magnets', 'Stickers', 'Mugs'], required: true },
-      { id: 'logo', name: 'Logo', type: 'logo', options: ['Upload'], required: true },
+      { id: 'item', name: 'סוג הפריט', type: 'material', options: ['מחזיקי מפתחות', 'מגנטים', 'מדבקות', 'כוסות'], required: true },
+      { id: 'logo', name: 'לוגו', type: 'logo', options: ['העלאה'], required: true },
+    ]
+  },
+  {
+    id: '7',
+    name: 'חולצות מותאמות',
+    category: 'shirts',
+    basePrice: 25.00,
+    description: 'חולצות איכותיות עם הדפסה של הלוגו שלך',
+    image: '/images/shirts.jpg',
+    minQuantity: 10,
+    maxQuantity: 500,
+    customizationOptions: [
+      { id: 'size', name: 'מידה', type: 'size', options: ['S', 'M', 'L', 'XL', 'XXL'], required: true },
+      { id: 'color', name: 'צבע החולצה', type: 'color', options: ['לבן', 'שחור', 'כחול', 'אדום', 'אפור'], required: true },
+      { id: 'logo', name: 'לוגו', type: 'logo', options: ['העלאה'], required: true },
+      { id: 'print-location', name: 'מיקום הדפסה', type: 'material', options: ['חזה', 'גב', 'שרוול'], required: true },
+    ]
+  },
+  {
+    id: '8',
+    name: 'קבלות מס',
+    category: 'tax-receipts',
+    basePrice: 12.50,
+    description: 'פנקסי קבלות מס מותאמים עם פרטי העסק',
+    image: '/images/tax-receipts.jpg',
+    minQuantity: 5,
+    maxQuantity: 200,
+    customizationOptions: [
+      { id: 'size', name: 'גודל', type: 'size', options: ['A5', 'A6'], required: true },
+      { id: 'pages', name: 'מספר עמודים', type: 'material', options: ['50 עמודים', '100 עמודים'], required: true },
+      { id: 'logo', name: 'לוגו העסק', type: 'logo', options: ['העלאה'], required: true },
+      { id: 'text', name: 'פרטי העסק', type: 'text', options: [], required: true },
     ]
   }
 ];
 
 const categories: { value: ProductCategory | 'all'; label: string }[] = [
-  { value: 'all', label: 'All Products' },
-  { value: 'pens', label: 'Pens' },
-  { value: 'business-cards', label: 'Business Cards' },
-  { value: 'bags', label: 'Bags' },
-  { value: 'receipts', label: 'Receipt Books' },
-  { value: 'letterheads', label: 'Letterheads' },
-  { value: 'promotional', label: 'Promotional Items' },
+  { value: 'all', label: 'כל המוצרים' },
+  { value: 'pens', label: 'עטים' },
+  { value: 'business-cards', label: 'כרטיסי ביקור' },
+  { value: 'shirts', label: 'חולצות' },
+  { value: 'bags', label: 'שקיות' },
+  { value: 'receipts', label: 'פנקסי קבלות' },
+  { value: 'tax-receipts', label: 'קבלות מס' },
+  { value: 'letterheads', label: 'נייר מכתבים' },
+  { value: 'promotional', label: 'פריטים פרסומיים' },
 ];
 
 const Products: React.FC = () => {
