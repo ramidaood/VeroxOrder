@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Mail, Lock, Building, UserPlus } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Register: React.FC = () => {
@@ -16,11 +17,11 @@ const Register: React.FC = () => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
-      return setError('Passwords do not match');
+      return setError('הסיסמאות אינן תואמות');
     }
     
     if (password.length < 6) {
-      return setError('Password must be at least 6 characters');
+      return setError('הסיסמה חייבת להכיל לפחות 6 תווים');
     }
     
     try {
@@ -29,102 +30,158 @@ const Register: React.FC = () => {
       await register(email, password, businessName);
       navigate('/dashboard');
     } catch (error: any) {
-      setError('Failed to create account: ' + error.message);
+      setError('שגיאה ביצירת חשבון: ' + error.message);
       console.error('Registration error:', error);
     }
     setLoading(false);
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">צור חשבון עסקי</h2>
-        
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
+    <div className="auth-page-bg">
+      <div className="login-container">
+        <div className="login-content" style={{ zIndex: 20 }}>
+          {/* Site Name */}
+          <div className="login-header">
+            <h1 className="auth-title">VeroxOrder</h1>
+            <p className="auth-subtitle">מערכת הזמנות מקצועית</p>
           </div>
-        )}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="businessName" className="block text-sm font-medium text-gray-700">
-              שם העסק
-            </label>
-            <input
-              type="text"
-              id="businessName"
-              value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="הזן את שם העסק שלך"
-            />
-          </div>
+
+          {/* Register Card */}
+          <div className="auth-card">
+            <div className="login-form-header">
+              <h2 className="login-form-title">צור חשבון עסקי</h2>
+              <p className="login-form-subtitle">הזן את פרטי העסק שלך כדי להתחיל</p>
+            </div>
           
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              כתובת אימייל
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="הזן את האימייל שלך"
-            />
-          </div>
+          {error && (
+            <div className="auth-error">
+              <div className="login-error-icon">⚠️</div>
+              {error}
+            </div>
+          )}
           
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              סיסמה
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="הזן סיסמה"
-            />
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label htmlFor="businessName" className="login-form-label">
+                שם העסק
+              </label>
+              <div className="login-input-container">
+                <div className="login-input-icon">
+                  <Building  />
+                </div>
+                <input
+                  type="text"
+                  id="businessName"
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                  required
+                  className="auth-input"
+                  placeholder="הזן את שם העסק שלך"
+                />
+              </div>
+            </div>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label htmlFor="email" className="login-form-label">
+                כתובת אימייל
+              </label>
+              <div className="login-input-container">
+                <div className="login-input-icon">
+                  <Mail  />
+                </div>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="auth-input"
+                  placeholder="your.email@example.com"
+                  dir="ltr"
+                  style={{ textAlign: 'left' }}
+                />
+              </div>
+            </div>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label htmlFor="password" className="login-form-label">
+                סיסמה
+              </label>
+              <div className="login-input-container">
+                <div className="login-input-icon">
+                  <Lock  />
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="auth-input"
+                  placeholder="הזן סיסמה (לפחות 6 תווים)"
+                />
+              </div>
+            </div>
+            
+            <div style={{ marginBottom: '2rem' }}>
+              <label htmlFor="confirmPassword" className="login-form-label">
+                אישור סיסמה
+              </label>
+              <div className="login-input-container">
+                <div className="login-input-icon">
+                  <Lock  />
+                </div>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className="auth-input"
+                  placeholder="אשר את הסיסמה שלך"
+                />
+              </div>
+            </div>
+            
+            <button
+              type="submit"
+              disabled={loading}
+              className="auth-button"
+              style={{ marginBottom: '1.5rem' }}
+            >
+              {loading ? (
+                <>
+                  <div className="login-spinner"></div>
+                  יוצר חשבון...
+                </>
+              ) : (
+                <>
+                  <UserPlus size={20} />
+                  צור חשבון
+                </>
+              )}
+            </button>
+          </form>
           
-          <div className="mb-6">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-              אישור סיסמה
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="אשר את הסיסמה שלך"
-            />
+          <div className="login-footer">
+            <p className="login-footer-text">
+              יש לך כבר חשבון?{' '}
+              <Link 
+                to="/login" 
+                style={{ 
+                  color: '#0ea5e9', 
+                  fontWeight: '600', 
+                  textDecoration: 'none' 
+                }}
+                className="hover:underline"
+              >
+                התחבר כאן
+              </Link>
+            </p>
           </div>
-          
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-          >
-            {loading ? 'יוצר חשבון...' : 'צור חשבון'}
-          </button>
-        </form>
-        
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
-            יש לך כבר חשבון?{' '}
-            <Link to="/login" className="text-blue-600 hover:text-blue-500">
-              התחבר כאן
-            </Link>
-          </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

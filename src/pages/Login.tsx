@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Mail, Lock, LogIn } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Login: React.FC = () => {
@@ -26,63 +27,109 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">התחברות לחשבון</h2>
-        
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
+    <div className="auth-page-bg">
+      <div className="login-container">
+        <div className="login-content" style={{ zIndex: 20 }}>
+          {/* Site Name */}
+          <div className="login-header">
+            <h1 className="auth-title">VeroxOrder</h1>
+            <p className="auth-subtitle">מערכת הזמנות מקצועית</p>
           </div>
-        )}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              כתובת אימייל
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="הזן את האימייל שלך"
-            />
+
+          {/* Login Card */}
+          <div className="auth-card">
+            <div className="login-form-header">
+              <h2 className="login-form-title">התחברות לחשבון</h2>
+              <p className="login-form-subtitle">הזן את פרטי הכניסה שלך כדי להמשיך</p>
+            </div>
+            
+            {error && (
+              <div className="auth-error">
+                <div className="login-error-icon">⚠️</div>
+                {error}
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <label htmlFor="email" className="login-form-label">
+                  כתובת אימייל
+                </label>
+                <div className="login-input-container">
+                  <div className="login-input-icon">
+                    <Mail />
+                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="auth-input"
+                    placeholder="your.email@example.com"
+                    dir="ltr"
+                    style={{ textAlign: 'left' }}
+                  />
+                </div>
+              </div>
+              
+              <div style={{ marginBottom: '2rem' }}>
+                <label htmlFor="password" className="login-form-label">
+                  סיסמה
+                </label>
+                <div className="login-input-container">
+                  <div className="login-input-icon">
+                    <Lock />
+                  </div>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="auth-input"
+                    placeholder="הזן את הסיסמה שלך"
+                  />
+                </div>
+              </div>
+              
+              <button
+                type="submit"
+                disabled={loading}
+                className="auth-button"
+                style={{ marginBottom: '1.5rem' }}
+              >
+                {loading ? (
+                  <>
+                    <div className="login-spinner"></div>
+                    מתחבר...
+                  </>
+                ) : (
+                  <>
+                    <LogIn size={20} />
+                    התחבר
+                  </>
+                )}
+              </button>
+            </form>
+            
+            <div className="login-footer">
+              <p className="login-footer-text">
+                אין לך חשבון?{' '}
+                <Link 
+                  to="/register" 
+                  style={{ 
+                    color: '#0ea5e9', 
+                    fontWeight: '600', 
+                    textDecoration: 'none' 
+                  }}
+                  className="hover:underline"
+                >
+                  הירשם כאן
+                </Link>
+              </p>
+            </div>
           </div>
-          
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              סיסמה
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="הזן את הסיסמה שלך"
-            />
-          </div>
-          
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-          >
-            {loading ? 'מתחבר...' : 'התחבר'}
-          </button>
-        </form>
-        
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
-            אין לך חשבון?{' '}
-            <Link to="/register" className="text-blue-600 hover:text-blue-500">
-              הירשם כאן
-            </Link>
-          </p>
         </div>
       </div>
     </div>

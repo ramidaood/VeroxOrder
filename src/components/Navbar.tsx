@@ -17,8 +17,8 @@ const Navbar: React.FC = () => {
 
   if (!currentUser) {
     return (
-      <nav className="bg-blue-600 text-white shadow-lg">
-        <div className="container mx-auto px-4">
+      <nav className="navbar">
+        <div className="container">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="text-xl font-bold">
               VeroxOrder
@@ -38,8 +38,8 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="bg-blue-600 text-white shadow-lg">
-      <div className="container mx-auto px-4">
+    <nav className="navbar">
+      <div className="container">
         <div className="flex justify-between items-center h-16">
           <Link to="/dashboard" className="text-xl font-bold">
             VeroxOrder

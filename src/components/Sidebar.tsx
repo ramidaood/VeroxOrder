@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
-  Package, 
   ShoppingCart, 
   History, 
   User, 
@@ -27,8 +26,7 @@ const Sidebar: React.FC = () => {
 
   const navigation = [
     { name: 'לוח בקרה', href: '/dashboard', icon: LayoutDashboard },
-    { name: 'מוצרים', href: '/products', icon: Package },
-    { name: 'הזמנה חדשה', href: '/orders', icon: ShoppingCart },
+    { name: 'הזמן מוצרים', href: '/products', icon: ShoppingCart },
     { name: 'היסטוריית הזמנות', href: '/order-history', icon: History },
   ];
 

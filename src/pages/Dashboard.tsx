@@ -217,10 +217,10 @@ const Dashboard: React.FC = () => {
                     </td>
                     <td>
                       <div className="space-x-pro">
-                        <button className="text-blue-600 hover:text-blue-500 text-sm font-medium">
+                        <button className="text-sky-600 hover:text-sky-500 text-sm font-medium">
                           צפה
                         </button>
-                        <button className="text-green-600 hover:text-green-500 text-sm font-medium">
+                        <button className="text-emerald-600 hover:text-emerald-500 text-sm font-medium">
                           הזמן שוב
                         </button>
                       </div>

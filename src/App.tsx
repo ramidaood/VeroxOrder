@@ -6,7 +6,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
-import Orders from './pages/Orders';
 import OrderHistory from './pages/OrderHistory';
 import './App.css';
 
@@ -48,14 +47,8 @@ function AppContent() {
                     </ProtectedRoute>
                   } 
                 />
-                <Route 
-                  path="/orders" 
-                  element={
-                    <ProtectedRoute>
-                      <Orders />
-                    </ProtectedRoute>
-                  } 
-                />
+                {/* Orders route redirects to products page now */}
+                <Route path="/orders" element={<Navigate to="/products" />} />
                 <Route 
                   path="/order-history" 
                   element={

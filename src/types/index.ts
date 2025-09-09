@@ -20,13 +20,9 @@ export interface Product {
 
 export type ProductCategory = 
   | 'pens'
-  | 'paper'
-  | 'receipts'
   | 'bags'
   | 'business-cards'
   | 'letterheads'
-  | 'envelopes'
-  | 'promotional'
   | 'shirts'
   | 'tax-receipts';
 
